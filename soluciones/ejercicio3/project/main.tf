@@ -16,4 +16,12 @@ resource "azurerm_virtual_network" "mi_vnet" {
   resource_group_name = var.existent_resource_group_name
   location            = var.location
   address_space       = var.vnet_address_space
+
+  tags = merge(
+    {
+      "owner" = var.owner_tag,
+      "environment" = var.environment_tag
+    },
+    var.vnet_tags
+    )
 }
